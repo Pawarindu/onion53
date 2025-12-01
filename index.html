@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Security Learn</title>
+    <link rel="icon" type="image/x-icon" href="img.png">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0a0a0a;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            text-shadow: 0 0 12px #00ff41;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-top: 50px;
+            text-shadow: 0 0 8px #00ff41;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background-color: #111;
+            border: 1px solid #00ff41;
+            padding: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px #00ff41;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: #00ff41;
+        }
+        
+        .card p {
+            font-size: 0.95em;
+            color: #aaffaa;
+        }
+        
+        .right-aligned-h6 {
+	  float: right;
+	}
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-decoration: underline;">// Cyber Security Toolkit //</h1>
+
+    <!-- Linux Tools Section -->
+    <h2>//...Linux Tools...//</h2>
+    <div class="grid" id="toolsGrid"></div>
+
+    <!-- Linux Commands Section -->
+    <h2>//...Linux Commands...//</h2>
+    <div class="grid" id="commandsGrid"></div>
+
+    <script>
+        const tools = [{
+            name: "Nmap",
+            desc: "Network scanner. Find open ports, services, and OS info."
+        }, {
+            name: "Wireshark",
+            desc: "Packet analyzer. Inspect network traffic in real time."
+        }, {
+            name: "Metasploit",
+            desc: "Exploitation framework. Test vulnerabilities."
+        }, {
+            name: "Burp Suite",
+            desc: "Web vulnerability scanner. Intercept and modify HTTP."
+        }, {
+            name: "Nikto",
+            desc: "Web server scanner. Detect outdated software and misconfigs."
+        }, {
+            name: "John the Ripper",
+            desc: "Password cracker. Brute-force hashed passwords."
+        }, {
+            name: "Hydra",
+            desc: "Login cracker. Brute-force SSH, FTP, HTTP logins."
+        }, {
+            name: "Aircrack-ng",
+            desc: "Wi-Fi security tool. Crack WEP/WPA keys."
+        }, {
+            name: "Sqlmap",
+            desc: "Automated SQL injection tester."
+        }, {
+            name: "Gobuster",
+            desc: "Directory and file brute-forcer on web servers."
+        }, {
+            name: "Netcat",
+            desc: "Swiss-army knife for TCP/UDP connections."
+        }, {
+            name: "Masscan",
+            desc: "Ultra-fast port scanner. Scan entire internet in minutes."
+        }, {
+            name: "Responder",
+            desc: "LLMNR, NBT-NS and MDNS poisoner."
+        }, {
+            name: "Impacket",
+            desc: "Python toolkit for working with network protocols."
+        }, {
+            name: "BloodHound",
+            desc: "Active Directory attack path analyzer."
+        }, {
+            name: "CrackMapExec",
+            desc: "AD exploitation tool. SMB, WMI, WinRM support."
+        }, {
+            name: "ZAP",
+            desc: "Open-source web app security scanner."
+        }, {
+            name: "ExifTool",
+            desc: "Read/write metadata of files. Useful for OSINT."
+        }, {
+            name: "Hashcat",
+            desc: "Fast password recovery using GPU power."
+        }, {
+            name: "TheHarvester",
+            desc: "Gather emails, subdomains, IPs from public sources."
+        }, {
+            name: "Sublist3r",
+            desc: "Fast sub-domain enumeration tool."
+        }, {
+            name: "Amass",
+            desc: "Advanced attack surface mapping and external asset discovery."
+        }, {
+            name: "Dirb",
+            desc: "Web content scanner. Find hidden directories."
+        }, {
+            name: "Wpscan",
+            desc: "WordPress vulnerability scanner."
+        }, {
+            name: "Enum4linux",
+            desc: "Enumerate SMB shares on Windows/Linux."
+        }, {
+            name: "Fierce",
+            desc: "DNS reconnaissance tool. Find non-contiguous IP space."
+        }, {
+            name: "Knockpy",
+            desc: "Subdomain brute-forcer with DNS zone transfer support."
+        }, {
+            name: "Whatweb",
+            desc: "Identify technologies used by web applications."
+        }, {
+            name: "Wfuzz",
+            desc: "Web application fuzzer for brute-forcing parameters."
+        }, {
+            name: "Cewl",
+            desc: "Custom wordlist generator from web pages."
+        }];
+
+        const commands = [{
+            name: "netstat -tulnp",
+            desc: "Show all listening ports and associated processes."
+        }, {
+            name: "ss -tulnp",
+            desc: "Faster and modern replacement for netstat."
+        }, {
+            name: "lsof -i",
+            desc: "List open internet files (ports)."
+        }, {
+            name: "ps aux | grep [name]",
+            desc: "Find running process by name."
+        }, {
+            name: "chmod +x file",
+            desc: "Make a file executable."
+        }, {
+            name: "chown user:group file",
+            desc: "Change file ownership."
+        }, {
+            name: "find / -perm -4000 2>/dev/null",
+            desc: "Find SUID binaries for privesc."
+        }, {
+            name: "grep -r 'password' /var/www/",
+            desc: "Search for 'password' in web files."
+        }, {
+            name: "crontab -l",
+            desc: "List scheduled tasks for current user."
+        }, {
+            name: "uname -a",
+            desc: "Show kernel version and system info."
+        }, {
+            name: "id",
+            desc: "Show current user ID and group info."
+        }, {
+            name: "whoami",
+            desc: "Display current username."
+        }, {
+            name: "ifconfig / ip a",
+            desc: "Show network interface configuration."
+        }, {
+            name: "route -n",
+            desc: "Show kernel routing table."
+        }, {
+            name: "arp -a",
+            desc: "View ARP table."
+        }, {
+            name: "dig example.com",
+            desc: "DNS lookup utility."
+        }, {
+            name: "nslookup example.com",
+            desc: "Query DNS records."
+        }, {
+            name: "curl -I http://example.com",
+            desc: "Fetch HTTP headers."
+        }, {
+            name: "wget http://example.com/file",
+            desc: "Download file from URL."
+        }, {
+            name: "base64 -d file.txt",
+            desc: "Decode base64 encoded file."
+        }, {
+            name: "hexdump -C file",
+            desc: "Display file in hex format."
+        }, {
+            name: "strings file",
+            desc: "Extract readable text from binary."
+        }, {
+            name: "file file",
+            desc: "Determine file type."
+        }, {
+            name: "stat file",
+            desc: "Show detailed file metadata."
+        }, {
+            name: "history",
+            desc: "Show command history."
+        }, {
+            name: "env",
+            desc: "Display environment variables."
+        }, {
+            name: "top",
+            desc: "Show running processes and resource usage."
+        }, {
+            name: "df -h",
+            desc: "Show disk usage in human-readable format."
+        }, {
+            name: "free -h",
+            desc: "Show memory usage."
+        }, {
+            name: "du -sh *",
+            desc: "Show size of files/directories in current path."
+        }];
+
+        function renderCards(list, containerId) {
+            const container = document.getElementById(containerId);
+            list.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<h3>${item.name}</h3><p>${item.desc}</p>`;
+                card.addEventListener("click", () => {
+                    navigator.clipboard.writeText(`${item.name}: ${item.desc}`);
+                    alert("Copied: " + item.name);
+                });
+                container.appendChild(card);
+            });
+        }
+
+        renderCards(tools, "toolsGrid");
+        renderCards(commands, "commandsGrid");
+    </script>
+<h6 class="right-aligned-h6">R2P_036</h6>
+</body>
+
+</html>
